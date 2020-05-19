@@ -39,6 +39,16 @@ const server = http.createServer((req, res) => {
           res.end(content)
         }
       )
+    } else if (req.url === '/api/users') {
+      res.writeHead(200, {
+        'Content-Type': 'text/json'
+      })
+
+      const users = [
+        {name: 'Nastya', age: 28},
+        {name: 'Anton', age: 32},
+      ]
+      res.end(JSON.stringify(users))
     } else {
       res.end()
     }
