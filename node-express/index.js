@@ -16,6 +16,9 @@ app.set('view engine', 'hbs');
 // указываем название папки где будут храниться шаблоны
 app.set('views', 'views');
 
+// позволяет добавлять новую функциональность
+app.use(express.static('public'))
+
 // метод, который позволяет обрабатывать различные get запросы
 app.get('/', (req, res) => {
   // res.sendFile(path.join(__dirname, 'views', 'index.html'))
