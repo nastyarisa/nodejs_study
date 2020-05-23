@@ -22,12 +22,24 @@ app.use(express.static('public'))
 // метод, который позволяет обрабатывать различные get запросы
 app.get('/', (req, res) => {
   // res.sendFile(path.join(__dirname, 'views', 'index.html'))
-  res.render('index')
+  res.render('index', { // объект, куда мы можем передавать различные опции
+    title: 'Home page',
+    isHome: true,
+  })
 });
 
-app.get('/about', (req, res) => {
-  // res.sendFile(path.join(__dirname, 'views', 'about.html'))
-  res.render('about')
+app.get('/courses', (req, res) => {
+  res.render('courses', {
+    title: 'Courses',
+    isCourses: true,
+  })
+});
+
+app.get('/add_course', (req, res) => {
+  res.render('add_course', {
+    title: 'Add course',
+    isAddCourse: true
+  })
 });
 
 const PORT = process.env.PORT || 3000;
