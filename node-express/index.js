@@ -1,6 +1,8 @@
 const express = require('express');
-const path = require('path');
 const exphbs = require('express-handlebars');
+const homeRoutes = require('./routes/home');
+const coursesRoutes = require('./routes/courses');
+const addRoutes = require('./routes/add');
 
 const app = express(); // аналог http.createServer
 
@@ -18,29 +20,11 @@ app.set('views', 'views');
 
 // позволяет добавлять новую функциональность
 app.use(express.static('public'))
-
-// метод, который позволяет обрабатывать различные get запросы
-app.get('/', (req, res) => {
-  // res.sendFile(path.join(__dirname, 'views', 'index.html'))
-  res.render('index', { // объект, куда мы можем передавать различные опции
-    title: 'Home page',
-    isHome: true,
-  })
-});
-
-app.get('/courses', (req, res) => {
-  res.render('courses', {
-    title: 'Courses',
-    isCourses: true,
-  })
-});
-
-app.get('/add_course', (req, res) => {
-  res.render('add_course', {
-    title: 'Add course',
-    isAddCourse: true
-  })
-});
+app.use(express.urlencoded({extended:true}))
+// первый параметр задат префиксы
+app.use('/', homeRoutes);
+app.use('/courses', coursesRoutes);
+app.use('/add_course', addRoutes);
 
 const PORT = process.env.PORT || 3000;
 
