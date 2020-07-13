@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const Cart = require('../models/cart');
-const Course = require('../models/course');
+const Course = require('../models/course_old');
 
 const router = Router();
 
