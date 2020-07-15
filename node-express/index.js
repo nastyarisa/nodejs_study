@@ -49,7 +49,8 @@ async function start() {
 
     await mongoose.connect(url, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useFindAndModify: false
     });
 
     app.listen(PORT, () => {
