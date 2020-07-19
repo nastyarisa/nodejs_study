@@ -7,7 +7,7 @@ const p = path.join(
   'cart.json'
 )
 
-class Cart {
+class Cart_old {
   static async add(course) {
     const cart = await this.fetch();
     let candidate = cart.courses.find(c => c.id === course.id);
@@ -30,7 +30,7 @@ class Cart {
   }
 
   static async remove(id) {
-    const cart = await Cart.fetch()
+    const cart = await Cart_old.fetch()
 
     const idx = cart.courses.findIndex(c => c.id === id)
     const course = cart.courses[idx];
@@ -64,4 +64,4 @@ class Cart {
 
 }
 
-module.exports = Cart;
+module.exports = Cart_old;
