@@ -43,6 +43,21 @@ userSchema.methods.addToCart = function(course) {
 
   this.cart = {items}
   return this.save()
+};
+
+userSchema.methods.removeFromCart = function(courseId) {
+  let items = [...this.cart.items];
+  const idx = items.findIndex(c => {
+    return c.courseId.toString() === courseId.toString()
+  });
+  if (typeof idx !== "number") return;
+  if (items[idx].count === 1) {
+    items.splice(idx, 1);
+  } else {
+    items[idx].count--;
+  }
+  this.cart = {items}
+  return this.save()
 }
 
 module.exports = model("User", userSchema)
