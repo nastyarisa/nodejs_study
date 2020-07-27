@@ -1,5 +1,5 @@
 const express = require('express');
-const Handlebars = require('handlebars')
+const Handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const path = require('path');
@@ -8,7 +8,8 @@ const homeRoutes = require('./routes/home');
 const coursesRoutes = require('./routes/courses');
 const addRoutes = require('./routes/add');
 const cartRoutes = require('./routes/cart');
-const User = require('./models/user')
+const ordersRoutes = require('./routes/orders');
+const User = require('./models/user');
 
 
 const app = express(); // аналог http.createServer
@@ -49,6 +50,7 @@ app.use('/', homeRoutes);
 app.use('/courses', coursesRoutes);
 app.use('/add_course', addRoutes);
 app.use('/cart', cartRoutes);
+app.use('/orders', ordersRoutes);
 
 const PORT = process.env.PORT || 3000;
 
